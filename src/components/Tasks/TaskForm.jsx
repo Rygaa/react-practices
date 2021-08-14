@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import classes from './TaskForm.module.css'
-const TaskForm = (props) => {
+import Modal from '../UI/Modal';
+const TaskForm = forwardRef((props, ref) => {
     const [brandInputted, setBrandInputted] = useState('')
     const [modelInputted, setModelInputted] = useState('')
     const [amountInputted, setAmountInputted] = useState('')
@@ -14,6 +15,7 @@ const TaskForm = (props) => {
             id: Math.random()
         })
     }
+
   
     const nameChangeHandler = (event) => {
         setBrandInputted(event.target.value)
@@ -26,15 +28,25 @@ const TaskForm = (props) => {
         setAmountInputted(event.target.value)
     }
 
-    return <form onSubmit={addTextSubmit} className={classes.form}>
-        <label htmlFor="name">Brand</label>
-        <input id='name' type="text" onChange={nameChangeHandler} autoComplete="off" /><br />
-        <label htmlFor="description">Model</label>
-        <input id='description' type="text" onChange={descriptionChangeHandler} autoComplete="off"/><br />
-        <label htmlFor="amount">Amount</label>
-        <input id='amount' type="text" onChange={amountChangeHandler} autoComplete="off"/><br />
-        <button>Add Task</button>
-    </form>
-};
+    const showMessage = event => {
+        props.setMessageBoxShown(true)
+        props.setMessageShown('GPU added !!!!')
+    }
+
+    return <div>
+        <form onSubmit={addTextSubmit} className={classes.form}>
+            <label htmlFor="name">Brand</label>
+            <input id='name' type="text" onChange={nameChangeHandler} autoComplete="off" /><br />
+            <label htmlFor="description">Model</label>
+            <input id='description' type="text" onChange={descriptionChangeHandler} autoComplete="off"/><br />
+            <label htmlFor="amount">Amount</label>
+            <input id='amount' type="text" onChange={amountChangeHandler} autoComplete="off"/><br />
+            <button onClick={showMessage}> Add Task </button>
+        </form>
+
+     
+        
+        </div>
+});
 
 export default TaskForm;
