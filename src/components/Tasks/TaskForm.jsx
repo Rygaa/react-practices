@@ -1,7 +1,10 @@
 import { useState, forwardRef } from 'react';
 import classes from './TaskForm.module.css'
 import Modal from '../UI/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { counterActions } from '../../store/counter';
 const TaskForm = forwardRef((props, ref) => {
+    const dispatch = useDispatch();
     const [brandInputted, setBrandInputted] = useState('')
     const [modelInputted, setModelInputted] = useState('')
     const [amountInputted, setAmountInputted] = useState('')
@@ -14,6 +17,8 @@ const TaskForm = forwardRef((props, ref) => {
             amount: amountInputted,
             id: Math.random()
         })
+        dispatch(counterActions.increment());
+
     }
 
   

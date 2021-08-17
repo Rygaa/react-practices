@@ -3,6 +3,7 @@ import TaskForm from './components/Tasks/TaskForm';
 import Header from './components/Layout/Header'
 import Task from './components/Tasks/Task';
 import Modal from './components/UI/Modal';
+import Counter from './components/Tasks/Counter';
 
 function App() {
 
@@ -36,6 +37,8 @@ function App() {
         setMessageBoxShown={setMessageBoxShown}
         setMessageShown={setMessageShown}
        />
+      <Counter />
+
       {tasksList}
 
       {
